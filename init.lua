@@ -114,13 +114,13 @@ require('lazy').setup({
     'lewis6991/gitsigns.nvim',
     opts = {
       -- See `:help gitsigns.txt`
-      signs = {
-        add = { text = '+' },
-        change = { text = '~' },
-        delete = { text = '_' },
-        topdelete = { text = '‾' },
-        changedelete = { text = '~' },
-      },
+      -- signs = {
+      --   add = { text = '+' },
+      --   change = { text = '~' },
+      --   delete = { text = '_' },
+      --   topdelete = { text = '‾' },
+      --   changedelete = { text = '~' },
+      -- },
       on_attach = function(bufnr)
         vim.keymap.set('n', '<leader>gp', require('gitsigns').prev_hunk,
           { buffer = bufnr, desc = '[G]o to [P]revious Hunk' })
@@ -246,6 +246,18 @@ vim.o.timeoutlen = 300
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
 
+-- Alwasy use spaces for tabs
+vim.opt.expandtab = true
+
+-- Set tab look
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.list = true
+vim.opt.listchars = { trail = "•", multispace = "•" }
+
+-- set number line width {defaults to 4}
+vim.opt.numberwidth = 3
+
 -- NOTE: You should make sure your terminal supports this
 vim.o.termguicolors = true
 
@@ -258,6 +270,22 @@ vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 -- Remap for dealing with word wrap
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+
+-- Move line or selection up and down
+vim.keymap.set('v', '<A-j>', ":m '>+1<cr>gv=gv", { desc = 'Move selection down' })
+vim.keymap.set('v', '<A-k>', ":m '<-2<cr>gv=gv", { desc = 'Move selection down' })
+vim.keymap.set('n', '<A-j>', ":m .+1<cr>==", { desc = 'Move selection down' })
+vim.keymap.set('n', '<A-k>', ":m .-2<cr>==", { desc = 'Move selection down' })
+vim.keymap.set('i', '<A-j>', "<ESC>:m .+1<cr>==gi", { desc = 'Move selection down' })
+vim.keymap.set('i', '<A-k>', "<ESC>:m .-2<cr>==gi", { desc = 'Move selection down' })
+
+-- Buffer interaction
+vim.keymap.set('n', '<leader>q', ":bdelete!<cr>", { desc = "[C]lose [B]uffer" })
+vim.keymap.set('n', ']b', ":bnext<cr>", { desc = "[B]uffer [N]ext" })
+vim.keymap.set('n', '[b', ":bprevious<cr>", { desc = "[B]uffer [P]revious" })
+
+-- Open Netrw
+vim.keymap.set('n', '<leader>f', ":Explore<cr>", { desc = "[N]tree" })
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
@@ -385,7 +413,7 @@ require('nvim-treesitter.configs').setup {
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
+vim.keymap.set('n', '<leader>E', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
 
 -- [[ Configure LSP ]]
 --  This function gets run when an LSP connects to a particular buffer.
