@@ -25,6 +25,31 @@ return {
     local dap = require 'dap'
     local dapui = require 'dapui'
 
+    require('dap').configurations.rust = {
+      {
+        name = "Rust: example debug",
+        type = "codelldb",
+        request = "launch",
+        program = function()
+          local example = vim.fn.input({ prompt = 'Example name: ', defualt = '' })
+          vim.fn.jobstart('cargo build --example ' .. example)
+          return vim.fn.getcwd() .. '/target/debug/examples/' .. example
+        end
+      },
+      {
+        name = "Rust: debug",
+        type = "codelldb",
+        request = "launch",
+        program = function()
+          return vim.fn.input({
+            prompt = 'Path to executable: ',
+            default = vim.fn.getcwd() .. '/target/debug/',
+            comletion = 'file'
+          })
+        end
+      },
+    }
+
     require('mason-nvim-dap').setup {
       -- Makes a best effort to setup the various debuggers with
       -- reasonable debug configurations
@@ -32,13 +57,18 @@ return {
 
       -- You can provide additional configuration to the handlers,
       -- see mason-nvim-dap README for more information
-      handlers = {},
+      handlers = {
+        function(config)
+          require('mason-nvim-dap').default_setup(config)
+        end,
+      },
 
       -- You'll need to check that you have the required things installed
       -- online, please don't ask me how to install them :)
       ensure_installed = {
         -- Update this to ensure that you have the debuggers for the langs you want
         'delve',
+        'codelldb'
       },
     }
 
