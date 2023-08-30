@@ -49,6 +49,8 @@ local configuration = {
   }
 }
 
+vim.cmd("set fileformats+=unix")
+
 -- [[ Set options ]]
 -- Options are automatically built
 for category, cvalue in pairs(configuration) do
