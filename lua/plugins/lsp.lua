@@ -40,6 +40,9 @@ return {
             'nvim-treesitter/nvim-treesitter-textobjects',
         },
         build = ':TSUpdate',
+        init = function()
+            require("nvim-treesitter.install").compilers = { "gcc" }
+        end,
         opts = {
             ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'typescript', 'vimdoc', 'vim' },
 
