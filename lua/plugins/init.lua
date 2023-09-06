@@ -2,7 +2,18 @@ return {
     -- NOTE: First, some plugins that don't require any configuration
 
     -- Better Netrw
-    "https://github.com/tpope/vim-vinegar.git",
+    { "https://github.com/tpope/vim-vinegar.git", enabled = true },
+    {
+        "stevearc/oil.nvim",
+        opts = {},
+        dependencies = { "nvim-tree/nvim-web-devicons" },
+        keymaps = {
+            { "n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" } },
+        },
+        config = function()
+            require("oil").setup()
+        end
+    },
 
     -- Git related plugins
     'tpope/vim-fugitive',
@@ -12,7 +23,7 @@ return {
     'tpope/vim-sleuth',
 
     -- "gc" to comment visual regions/lines
-    { 'numToStr/Comment.nvim', opts = {} },
+    { 'numToStr/Comment.nvim',                    opts = {} },
 
     -- Fuzzy Finder (files, lsp, etc)
     {
@@ -39,6 +50,15 @@ return {
                         theme = 'dropdown',
                         previewer = true,
                     },
+                    search_headings = {
+                        theme = 'dropdown',
+                    },
+                    insert_link = {
+                        theme = 'dropdown',
+                    },
+                    insert_file_link = {
+                        theme = 'dropdown',
+                    }
                 }
             })
             pcall(require('telescope').load_extension, 'fzf')
@@ -60,7 +80,7 @@ return {
 
     {
         "Exafunction/codeium.vim",
-        enabled = false,
+        enabled = true,
         config = function()
             vim.keymap.set("i", "<C-g>", function() return vim.fn["codeium#Accept"]() end, { expr = true })
             vim.keymap.set("i", "<c-;>", function() return vim.fn["codeium#CycleCompletions"](1) end, { expr = true })

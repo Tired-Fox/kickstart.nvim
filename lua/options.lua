@@ -4,6 +4,9 @@
 -- NOTE: This is mapping vim.[opt|o|wo].<option>. The options are automatically build, see below.
 local configuration = {
   opt = {
+    -- For better Neorg experience
+    foldlevelstart = 99,
+    conceallevel = 3,
     -- Alwasy use spaces for tabs
     expandtab = true,
     -- Set tab look
@@ -21,6 +24,7 @@ local configuration = {
     hlsearch = false,
     -- Enable mouse mode
     mouse = 'a',
+    relativenumber = true,
     -- Sync clipboard between OS and Neovim.
     --  Remove this option if you want your OS clipboard to remain independent.
     --  See `:help 'clipboard'`
