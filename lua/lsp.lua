@@ -50,10 +50,16 @@ end
 --  the `settings` field of the server config. You must look up that documentation yourself.
 local servers = {
   -- clangd = {},
-  -- gopls = {},
-  -- pyright = {},
+  gopls = {},
+  pyright = {},
   rust_analyzer = {},
-  -- tsserver = {},
+  asm_lsp = {},
+  cssls = {},
+  tsserver = {},
+  html = {},
+  tailwindcss = {},
+  prettier = {},
+  zls = {},
 
   lua_ls = {
     Lua = {

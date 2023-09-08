@@ -25,3 +25,12 @@ vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
   group = mkdir_group,
   pattern = '*.*',
 })
+
+local set_wrap = vim.api.nvim_create_augroup('SetWrap', { clear = true })
+vim.api.nvim_create_autocmd({ "BufRead" }, {
+  callback = function()
+    vim.cmd [[ set nowrap ]]
+  end,
+  group = set_wrap,
+  pattern = "*.norg"
+})
