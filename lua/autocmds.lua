@@ -27,7 +27,7 @@ vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
 })
 
 local set_wrap = vim.api.nvim_create_augroup('SetWrap', { clear = true })
-vim.api.nvim_create_autocmd({ "BufRead" }, {
+vim.api.nvim_create_autocmd({ "BufEnter" }, {
   callback = function()
     vim.cmd [[ set nowrap ]]
   end,

@@ -58,7 +58,6 @@ local servers = {
   tsserver = {},
   html = {},
   tailwindcss = {},
-  prettier = {},
   zls = {},
 
   lua_ls = {
