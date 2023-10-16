@@ -42,10 +42,11 @@ return {
           ["core.dirman"] = {
             config = {
               workspaces = {
-                notes = "~/Documents/notes"
+                work = "~/Documents/notes",
+                notes = "D:/notes"
               },
               index = "index.norg",
-              default_workspace = "notes"
+              default_workspace = "work"
             }
           }
         }

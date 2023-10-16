@@ -1,6 +1,9 @@
 return {
     -- Useful plugin to show you pending keybinds.
-    { 'folke/which-key.nvim',  opts = {} },
+    {
+        'folke/which-key.nvim',
+        opts = {}
+    },
     {
         -- Adds git releated signs to the gutter, as well as utilities for managing changes
         'lewis6991/gitsigns.nvim',
@@ -22,6 +25,17 @@ return {
                     { buffer = bufnr, desc = '[P]review [H]unk' })
             end,
         },
+        config = function()
+            local wk = require('which-key')
+            local opts = { prefix = "<leader>" };
+
+            wk.register({
+                c = { name = "Crates" },
+                f = { name = "Find" },
+                g = { name = "Git" },
+                n = { name = "Neorg" },
+            }, opts)
+        end
     },
 
     {

@@ -1,5 +1,7 @@
 # kickstart.nvim
 
+[Precompiled parsers](https://github.com/anasrar/nvim-treesitter-parser-bin)
+
 https://github.com/kdheepak/kickstart.nvim/assets/1813121/f3ff9a2b-c31f-44df-a4fa-8a0d7b17cf7b
 
 ### Introduction
@@ -147,3 +149,24 @@ This requires:
 {'nvim-telescope/telescope-fzf-native.nvim', build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
 ```
 
+Nasm injection for rust macro
+```lua
+require('nvim-treesitter.parsers').get_parser_configs().asm = {
+    install_info = {
+        url = 'https://github.com/rush-rs/tree-sitter-asm.git',
+        files = { 'src/parser.c' },
+        branch = 'main',
+    },
+}
+```
+```lisp
+; queries/injections.scm
+; extends
+(
+  (macro_invocation
+    macro: ((identifier) @_nasm_def)
+    (token_tree) @asm)
+
+    (#eq? @_nasm_def "nasm")
+)
+```
