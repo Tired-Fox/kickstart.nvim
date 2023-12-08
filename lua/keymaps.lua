@@ -24,7 +24,7 @@ vim.keymap.set('n', ']b', ":bnext<cr>", { desc = "[B]uffer [N]ext" })
 vim.keymap.set('n', '[b', ":bprevious<cr>", { desc = "[B]uffer [P]revious" })
 
 -- Open Netrw
-vim.keymap.set('n', '<leader>o', ":Oil<cr>", { desc = "[N]tree" })
+vim.keymap.set('n', '<leader>o', ":Oil --float<cr>", { desc = "[N]tree" })
 
 -- Diagnostic keymaps
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })

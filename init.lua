@@ -2,11 +2,6 @@
 ==================================
         Tired Fox Config
 ==================================
-Origin: https://github.com/nvim-lua/kickstart.nvim
-
-Forked from kickstart.nvim as a simple starter template. The core template has been
-modified to handle multiple files and to toggle a few extra options. All plugins are moved
-to the plugins directory.
 --]]
 
 -- Set keymap leader
@@ -31,5 +26,6 @@ vim.opt.rtp:prepend(lazypath)
 require('lazy').setup('plugins')
 require('keymaps')
 require('autocmds')
-require('lsp')
 require('options')
+-- require('lsp')
+-- require('powershell')
