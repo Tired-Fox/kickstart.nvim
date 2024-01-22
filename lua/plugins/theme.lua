@@ -5,15 +5,18 @@ return {
         priority = 1000,
         config = function()
             require('catppuccin').setup({
-                flavour = "mocha",
+                flavour = "macchiato",
                 background = {
                     dark = "mocha",
                     light = "latte",
                 },
                 integrations = {
-                    -- cmp = true,
-                    -- gitsigns = true,
-                    -- treesitter = true
+                    navic = {
+                        enabled = true,
+                    },
+                    cmp = true,
+                    gitsigns = true,
+                    treesitter = true
                 }
             })
             vim.cmd("colorscheme catppuccin")

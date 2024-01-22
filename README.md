@@ -7,14 +7,24 @@ https://github.com/kdheepak/kickstart.nvim/assets/1813121/f3ff9a2b-c31f-44df-a4f
 - [x] Oil.nvim
 - [x] Catppuccin Theme
 - [x] Telescope.nvim
-- [ ] Treesitter.nvim
-- [ ] LSP (ref: Kickstart.nvim)
-- [ ] Navic.nvim
-- [ ] Lualine
+- [x] Treesitter.nvim
+- [x] LSP (ref: Kickstart.nvim)
+- [x] Navic.nvim
+- [x] Comment
+- [x] Autopairs
+- [x] Sleuth
+- [x] Indent-Blankline
+- [x] Lualine
+- [x] Dap + Dapui
+- [x] telescope-dap.nvim
+- [x] [Rustaceonvim](https://github.com/mrcjkb/rustaceanvim)
+    - successor to rust-tools, only for nvim v0.9^
+- [ ] [none-ls.nvim](https://github.com/nvimtools/none-ls.nvim)
+    - Fork of null-ls
 - [ ] Harpoon.nvim
 - [ ] git
-    - [ ] gitsigns
+    - [x] gitsigns
     - [ ] tool similar to emacs git plugin
 - [ ] Whichkey.nvim
 
-- [ ] Buffer Handling
+- [x] Buffer Handling
