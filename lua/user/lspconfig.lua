@@ -15,9 +15,21 @@ local M = {
   },
 }
 
+-- Change diagnostic symbols
+local signs = { Error = "", Warn = "", Hint = "󰌶", Info = "" }
+for type, icon in pairs(signs) do
+  local hl = 'DiagnosticSign' .. type
+  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+end
+
+-- Turn off virtual text diagnostic
+vim.diagnostic.config {
+  virtual_text = false
+}
+
 local servers = {
   -- clangd = {},
-  zls={},
+  zls = {},
   gopls = {},
   pyright = {},
   -- tsserver = {},
@@ -27,23 +39,24 @@ local servers = {
       workspace = { checkThirdParty = false },
       telemetry = { enable = false },
       -- NOTE: toggle below to ignore Lua_LS's noisy `missing-fields` warnings
-      -- diagnostics = { disable = { 'missing-fields' } },
+      diagnostics = { disable = { 'missing-fields' } },
     },
   },
 }
 
-local attach_navic = function(client, bufnr)
-  if client.server_capabilities.documentSymbolProvider then
-    require('nvim-navic').attach(client, bufnr)
-    vim.o.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
-  end
-  require('nvim-navbuddy').attach(client, bufnr)
-end
+local border = 'rounded'
+local handlers = {
+  ['textDocument/hover'] = vim.lsp.with(
+    vim.lsp.handlers.hover,
+    { border = border }
+  ),
+  ['textDocument/signatureHelp'] = vim.lsp.with(
+    vim.lsp.handlers.signature_help,
+    { border = border }
+  ),
+}
 
-local on_attach = function(client, bufnr)
-  local wk = require 'which-key'
-  attach_navic(client, bufnr)
-
+M.keybinds = function(wk)
   wk.register {
     ['<leader>lr'] = { vim.lsp.buf.rename, 'Rename' },
     ['<leader>la'] = { vim.lsp.buf.code_action, 'Code Action' },
@@ -64,6 +77,20 @@ local on_attach = function(client, bufnr)
     --   print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
     -- end, '[W]orkspace [L]ist Folders' },
   }
+end
+
+M.attach_navic = function(client, bufnr)
+  if client.server_capabilities.documentSymbolProvider then
+    require('nvim-navic').attach(client, bufnr)
+    vim.o.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
+  end
+  require('nvim-navbuddy').attach(client, bufnr)
+end
+
+local on_attach = function(client, bufnr)
+  local wk = require 'which-key'
+  M.keybinds(wk)
+  M.attach_navic(client, bufnr)
 
   -- Create a command `:Format` local to the LSP buffer
   vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
@@ -72,20 +99,6 @@ local on_attach = function(client, bufnr)
 end
 
 M.config = function()
-  local navic, navbuddy = require 'nvim-navic', require 'nvim-navbuddy'
-
-  -- Set diagnostic symbols
-  local signs = { Error = "", Warning = "", Hint = "󰌶", Information = "" }
-  for type, icon in pairs(signs) do
-    local hl = 'DiagnosticSign' .. type
-    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
-  end
-
-  -- Turn off virtual text diagnostic
-  vim.diagnostic.config {
-    virtual_text = false
-  }
-
   local mason_lspconfig = require('mason-lspconfig')
   require('mason').setup()
   mason_lspconfig.setup()
@@ -117,6 +130,7 @@ M.config = function()
         on_attach = on_attach,
         settings = servers[server_name],
         filetypes = (servers[server_name] or {}).filetypes,
+        handlers = handlers
       }
     end,
   }

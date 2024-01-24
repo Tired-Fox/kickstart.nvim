@@ -1,6 +1,8 @@
+local enabled = true 
+
 local M = {
   "Exafunction/codeium.nvim",
-  enabled = true,
+  enabled = enabled,
   dependencies = {
     "nvim-lua/plenary.nvim",
     "hrsh7th/nvim-cmp",
@@ -9,7 +11,7 @@ local M = {
 
 M.config = function()
   -- Change this for different default enabled state
-  vim.g.codeium_enabled = true
+  vim.g.codeium_enabled = enabled
 
   require("codeium").setup({
   })

@@ -5,7 +5,8 @@ local M = {
 
 M.config = function()
   local mappings = {
-    q = { "<cmd>bdelete!<CR>", "Close" },
+    q = { "<cmd>qall<CR>", "Quit" },
+    c = { "<cmd>bdelete!<CR>", "Close" },
     h = { "<cmd>nohlsearch<CR>", "NOHL" },
     b = { name = "Buffers" },
     d = { name = "Debug" },
@@ -17,6 +18,7 @@ M.config = function()
 
   local which_key = require "which-key"
   which_key.setup {
+    hidden = { '<space>' },
     plugins = {
       marks = true,
       registers = true,

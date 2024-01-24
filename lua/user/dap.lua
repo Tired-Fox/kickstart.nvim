@@ -42,6 +42,10 @@ M.config = function()
   wk.register {
     ['<leader>db'] = { function() dap.toggle_breakpoint() end, 'Toggle Breakpoint'},
     ['<leader>dc'] = { function() dapui.close() end, 'DAP UI Close'},
+    ['<F9>'] = { function() dap.continue() end, 'DAP UI Close'},
+    ['<F8>'] = { function() dap.step_over() end, 'DAP UI Close'},
+    ['<F7>'] = { function() dap.step_into() end, 'DAP UI Close'},
+    ['<S-F8>'] = { function() dap.step_out() end, 'DAP UI Close'},
   }
 end
 
