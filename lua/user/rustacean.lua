@@ -25,20 +25,6 @@ M.init = function()
       -- ref: api-win_config
       float_win_config = {}
     },
-    on_attach = function(client, bufnr)
-      if client.server_capabilities.documentSymbolProvider then
-        require('nvim-navic').attach(client, bufnr)
-        vim.o.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
-      end
-      require('nvim-navbuddy').attach(client, bufnr)
-
-      -- TODO: Add mappings
-      local wk = require 'which-key'
-      wk.register {
-        ['<leader>la'] = { function() vim.cmd.RustLsp('codeAction') end, 'Code Action' },
-        ['<S-k>'] = { function() vim.cmd.RustLsp('hover', 'actions') end, 'Code Action' },
-      }
-    end,
     server = {
       settings = {
         ['rust-analyzer'] = {
@@ -46,7 +32,21 @@ M.init = function()
             command = 'clippy'
           }
         }
-      }
+      },
+      on_attach = function(client, bufnr)
+        if client.server_capabilities.documentSymbolProvider then
+          require('nvim-navic').attach(client, bufnr)
+          vim.o.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
+        end
+        require('nvim-navbuddy').attach(client, bufnr)
+
+        -- TODO: Add mappings
+        local wk = require 'which-key'
+        wk.register {
+          ['<leader>la'] = { function() vim.cmd.RustLsp('codeAction') end, 'Code Action' },
+          ['<S-k>'] = { function() vim.cmd.RustLsp('hover', 'actions') end, 'Hover Actions' },
+        }
+      end,
     },
     dap = {
       adapter = cfg.get_codelldb_adapter(codelldb_path, liblldb_path)
