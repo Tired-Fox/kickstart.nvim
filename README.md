@@ -17,14 +17,17 @@ https://github.com/kdheepak/kickstart.nvim/assets/1813121/f3ff9a2b-c31f-44df-a4f
 - [x] Lualine
 - [x] Dap + Dapui
 - [x] telescope-dap.nvim
+- [x] Whichkey.nvim
 - [x] [Rustaceonvim](https://github.com/mrcjkb/rustaceanvim)
     - successor to rust-tools, only for nvim v0.9^
-- [ ] [none-ls.nvim](https://github.com/nvimtools/none-ls.nvim)
+- [(~)] [none-ls.nvim](https://github.com/nvimtools/none-ls.nvim)
     - Fork of null-ls
-- [ ] Harpoon.nvim
+- [x] Harpoon.nvim
+- [ ] TODO
+- [ ] Pretty quickfix
+- [ ] Trouble instead of quickfix?
 - [ ] git
     - [x] gitsigns
     - [ ] tool similar to emacs git plugin
-- [ ] Whichkey.nvim
 
 - [x] Buffer Handling

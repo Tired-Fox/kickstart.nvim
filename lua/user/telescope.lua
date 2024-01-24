@@ -208,7 +208,7 @@ M.config = function()
   local wk = require 'which-key'
   wk.register {
     ['<leader>?'] = {require('telescope.builtin').oldfiles, '[?] Find recently opened files'},
-    ['<leader><space>'] = {require('telescope.builtin').buffers, '[ ] Find existing buffers'},
+    ['<leader><space>'] = {require('buffer_manager.ui').toggle_quick_menu, '[ ] Buffers'},
     ['<leader>/'] = {
       function()
         -- You can pass additional configuration to telescope to change theme, layout, etc.

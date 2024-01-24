@@ -24,7 +24,11 @@ end
 
 -- Turn off virtual text diagnostic
 vim.diagnostic.config {
-  virtual_text = false
+  virtual_text = false,
+  underline = true,
+  float = {
+    border = 'rounded'
+  }
 }
 
 local servers = {
