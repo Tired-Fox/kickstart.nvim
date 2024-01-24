@@ -5,7 +5,7 @@ local M = {
 
 M.config = function()
   local mappings = {
-    q = { "<cmd>bdelete!<CR>", "Quit" },
+    q = { "<cmd>bdelete!<CR>", "Close" },
     h = { "<cmd>nohlsearch<CR>", "NOHL" },
     b = { name = "Buffers" },
     d = { name = "Debug" },

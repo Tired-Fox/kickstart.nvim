@@ -44,7 +44,17 @@ M.init = function()
         local wk = require 'which-key'
         wk.register {
           ['<leader>la'] = { function() vim.cmd.RustLsp('codeAction') end, 'Code Action' },
-          ['<S-k>'] = { function() vim.cmd.RustLsp('hover', 'actions') end, 'Hover Actions' },
+          ['K'] = { function() vim.cmd.RustLsp('hover', 'actions') end, 'Hover Actions' },
+          ['<leader>lr'] = { vim.lsp.buf.rename, 'Rename' },
+          ['gd'] = { require('telescope.builtin').lsp_definitions, 'Goto Definition' },
+          ['gr'] = { require('telescope.builtin').lsp_references, 'Goto References' },
+          ['gI'] = { require('telescope.builtin').lsp_implementations, 'Goto Implementation' },
+          ['<leader>lD'] = { require('telescope.builtin').lsp_type_definitions, 'Type Definition' },
+          ['<leader>ls'] = { require('telescope.builtin').lsp_document_symbols, 'Document Symbols' },
+          ['<leader>lS'] = { require('telescope.builtin').lsp_dynamic_workspace_symbols, 'Workspace Symbols' },
+          -- See `:help K` for why this keymap
+          ['<C-k>'] = { vim.lsp.buf.signature_help, 'Signature Documentation' },
+          ['gD'] = { vim.lsp.buf.declaration, 'Goto Declaration' },
         }
       end,
     },
