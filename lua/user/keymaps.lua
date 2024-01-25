@@ -21,6 +21,10 @@ vim.keymap.set('n', '<A-k>', ":m .-2<cr>==", { desc = 'Move selection down' })
 vim.keymap.set('i', '<A-j>', "<ESC>:m .+1<cr>==gi", { desc = 'Move selection down' })
 vim.keymap.set('i', '<A-k>', "<ESC>:m .-2<cr>==gi", { desc = 'Move selection down' })
 
+-- Indent without loosing selection
+vim.keymap.set('v', '>', ">gv", { desc = 'Indent Selection' })
+vim.keymap.set('v', '<', "<gv", { desc = 'Dedent Selection' })
+
 -- Open Netrw
 vim.keymap.set('n', '<leader>o', ":Oil --float<cr>", { desc = "[N]tree" })
 
