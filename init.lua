@@ -15,7 +15,12 @@ spec 'user.lualine'
 spec 'user.treesitter'
 spec 'user.lspconfig'
 spec 'user.cmp'
-spec 'user.null-ls'
+
+-- conform = formatting
+spec 'user.conform'
+-- nvim-lint = linting
+spec 'user.lint'
+
 spec 'user.telescope'
 spec 'user.autopairs'
 spec 'user.dap'

@@ -5,6 +5,7 @@ local M = {
     -- Automatically install LSPs to stdpath for neovim
     'williamboman/mason.nvim',
     'williamboman/mason-lspconfig.nvim',
+    'WhoIsSethDaniel/mason-tool-installer.nvim',
 
     -- Useful status updates for LSP
     -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
@@ -33,11 +34,13 @@ vim.diagnostic.config {
 
 local servers = {
   -- clangd = {},
+  -- tsserver = {},
+  html = { filetypes = { 'html', 'twig', 'hbs'} },
   zls = {},
   gopls = {},
   pyright = {},
-  -- tsserver = {},
-  -- html = { filetypes = { 'html', 'twig', 'hbs'} },
+  ruff_lsp = {},
+  taplo = {},
   lua_ls = {
     Lua = {
       workspace = { checkThirdParty = false },
@@ -46,6 +49,12 @@ local servers = {
       diagnostics = { disable = { 'missing-fields' } },
     },
   },
+}
+
+local tools = {
+  'prettier',
+  'eslint',
+  'stylua',
 }
 
 local border = 'rounded'
@@ -95,15 +104,11 @@ local on_attach = function(client, bufnr)
   local wk = require 'which-key'
   M.keybinds(wk)
   M.attach_navic(client, bufnr)
-
-  -- Create a command `:Format` local to the LSP buffer
-  vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
-    vim.lsp.buf.format()
-  end, { desc = 'Format current buffer with LSP' })
 end
 
 M.config = function()
   local mason_lspconfig = require('mason-lspconfig')
+  local mason_tool_installer = require('mason-tool-installer')
   require('mason').setup()
   mason_lspconfig.setup()
   require('mason-nvim-dap').setup({
@@ -121,6 +126,10 @@ M.config = function()
 
   mason_lspconfig.setup {
     ensure_installed = vim.tbl_keys(servers),
+  }
+
+  mason_tool_installer.setup {
+    ensure_installed = tools,
   }
 
   mason_lspconfig.setup_handlers {

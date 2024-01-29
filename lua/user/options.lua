@@ -1,7 +1,4 @@
 -- [[ Configure options ]]
--- See `:help vim.o`
--- NOTE: You can change these options as you wish!
--- NOTE: This is mapping vim.[opt|o|wo].<option>. The options are automatically build, see below.
 local configuration = {
   opt = {
     -- For better Neorg experience
@@ -20,6 +17,7 @@ local configuration = {
     writebackup = false,
   },
   o = {
+    cmdheight=1,
     -- Set highlight on search
     hlsearch = false,
     -- Enable mouse mode
