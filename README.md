@@ -23,11 +23,11 @@ https://github.com/kdheepak/kickstart.nvim/assets/1813121/f3ff9a2b-c31f-44df-a4f
 - [(~)] [none-ls.nvim](https://github.com/nvimtools/none-ls.nvim)
     - Fork of null-ls
 - [x] Harpoon.nvim
-- [ ] TODO
-- [ ] Pretty quickfix
-- [ ] Trouble instead of quickfix?
+- [x] TODO
+- [x] Buffer Handling
+- [x] Pretty quickfix
 - [ ] git
     - [x] gitsigns
-    - [ ] tool similar to emacs git plugin
+    - [x] Neogit. Similar to Magit for Emacs
+    - [x] [Diffview.nvim](https://github.com/sindrets/diffview.nvim) Part of neogit
 
-- [x] Buffer Handling

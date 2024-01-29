@@ -29,6 +29,11 @@ spec 'user.oil'
 spec 'user.sleuth'
 spec 'user.buffer_manager'
 spec 'user.harpoon'
+spec 'user.todo-comment'
+spec 'user.pqf'
+spec 'user.bqf'
+spec 'user.fzf'
+spec 'user.neogit'
 
 -- Rust
 spec 'user.rustacean'
